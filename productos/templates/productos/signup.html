@@ -1,0 +1,68 @@
+{% extends 'productos/index.html' %}
+
+
+{% block titulo %}
+    <h1 class="mb-5">Registra tu usuario </h1>
+    <a class="btn btn-primary" href="#Stock">go</a>
+{% endblock titulo %}
+    
+
+{% block contenido %}
+    <section class="stock-section text-center" id="Stock">
+        {% block content %}
+            <style>
+                /* edit tabla */
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+        
+                /* edit h1 */
+                h1 {
+                    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.8), #000000);
+                    color: white;
+                    font-size: 25px; 
+                    border: 1px solid #ddd;
+                }
+        
+                /* edit celda */
+                td {
+                    border: 1px solid #ddd;
+                    padding: 8px;
+                }
+            </style>
+            <h1>Registre su usuario</h1>
+            <form method="post" action="{% url 'SignUp' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+            <button type="submit">Enviar</button>
+            </form>
+        {% endblock %}
+        <style>
+            /* edit tabla */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                background: linear-gradient(to bottom, rgba(255, 0, 0, 0.8), #000000);
+            }
+    
+            /* edit tch */
+            th {
+                background-color: #333;
+                color: white;
+                font-size: 20px;  
+                padding: 15px;    
+                width: 150px;     
+                height: 50px;    
+                border: 1px solid #ddd;
+            }
+    
+            /* edit celdas */
+            td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+        </style>
+        </div>
+    </section>
+{% endblock contenido %} 
