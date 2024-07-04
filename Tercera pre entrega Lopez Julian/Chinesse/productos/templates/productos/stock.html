@@ -1,0 +1,74 @@
+{% extends 'productos/index.html' %}
+
+
+{% block titulo %}
+    <h1 class="mb-5">Chinesse.</h1>
+    <a class="btn btn-primary" href="#Stock">check</a>
+{% endblock titulo %}
+    
+{% block contenido %}
+    <style>
+        /* edit tabla css*/
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: linear-gradient(to bottom, rgba(184, 134, 11, 0.8), #000000);
+        }
+
+        /* edit con css */
+        th {
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            background-color: #333; 
+            color: #fff; 
+            padding: 10px; 
+          }
+          td, th {
+            border: 1px solid #ddd; 
+            padding: 8px;
+            text-align: center; 
+          }
+    </style>
+    <section class="stock-section bg-light bg-color" id="Stock">
+        <table class="table table-scripted">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>producto</th>
+                    <th>modelo</th>
+                    <th>talle</th>
+                    <th>precio</th>    
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in Stock %}
+                    <tr>
+                        <td>{{p.producto}}</td>
+                        <td>{{p.modelo}}</td>
+                        <td>{{p.precio}}</td>
+                        <td>{{p.talles}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </section>
+{% endblock contenido %}   
+        <!-- Projects
+        <section class="Stock-section bg-light bg-color" id="Stock"> 
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            Pants
+                            shirts
+                            buzos
+                            perfumes
+                            iphones
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> --> 
+
+
+
