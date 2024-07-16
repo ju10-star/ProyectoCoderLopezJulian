@@ -10,5 +10,6 @@ urlpatterns = [
     path('SignUp/', signup, name="SignUp"),
     path('SignIn/', SignIn, name="SignIn"),
     path('StockForm/', stock_form, name="StockForm"),
+    path('Add_product_Success/', success_view, name='successproduct'),
     #path('', home, name="index")
 ]

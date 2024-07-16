@@ -20,8 +20,9 @@
         
                 /* edit h1 */
                 h1 {
-                    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.8), #000000);
-                    color: white;
+                    background: transparent;
+                    /*background: linear-gradient(to bottom, rgba(255, 0, 0, 0.8), #000000);*/
+                    color: black;
                     font-size: 25px; 
                     border: 1px solid #ddd;
                 }
@@ -31,20 +32,61 @@
                     border: 1px solid #ddd;
                     padding: 8px;
                 }
+                
+
+                .form-field input,
+                .form-field select,
+                .form-field textarea {
+                    color: white; /* Cambia el color del texto a blanco */
+                    background-color: black; /* Fondo transparente */
+                    border: 1px solid black; /* Borde blanco */
+                }
+
             </style>
             <h1>Formulario de Stock</h1>
             <form method="post" action="{% url 'StockForm' %}">
                 {% csrf_token %}
-                {{ form.as_p }}
+                <table>
+                    {% for field in miForm %}
+                        <tr>
+                            <td><label style="color: white;">{{ field.label_tag }}</td>
+                            <td class="form-field">{{ field }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <table>
+                    {% if model_form %}
+                        {% for field in model_form %}
+                            <tr>
+                                <td><label style="color: white;">{{ field.label_tag }}</td>
+                                <td class="form-field">{{ field }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </table>
+                
+                <button type="submit">Enviar</button>
+            </form>            
+            <!--<form method="post" action="{% url 'StockForm' %}">
+                {% csrf_token %}
+                <table>
+                    {% for field in form %}
+                        <tr>
+                            <td><label style="color: white;">{{ field.label_tag }}</td>
+                            <td class="form-field">{{ field }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
             <button type="submit">Enviar</button>
-            </form>
+            </form>-->
         {% endblock %}
         <style>
             /* edit tabla */
             table {
                 width: 100%;
                 border-collapse: collapse;
-                background: linear-gradient(to bottom, rgba(255, 0, 0, 0.8), #000000);
+                /*background: linear-gradient(to bottom, rgba(255, 0, 0, 0.8), #000000); */
+                background: transparent;
             }
     
             /* edit tch */
@@ -73,6 +115,15 @@
                     <th>talle</th>
                     <th>precio</th>
                 </tr>
+                <tbody>
+                    {% for p in pants %}
+                        <tr>
+                            <td>{{p.modelo_pant}}</td>
+                            <td>{{p.talles}}</td>
+                            <td>{{p.precio}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
             </thead>
         </table>
         </div>
