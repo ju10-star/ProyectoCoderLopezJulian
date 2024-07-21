@@ -1,0 +1,20 @@
+{% extends 'productos/index.html' %}
+
+
+{% block titulo %}
+    <h1 class="mb-5">edit profile </h1>
+{% endblock titulo %}
+    
+
+{% block contenido %}   
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="save">
+</form>
+
+
+{% endblock contenido %}

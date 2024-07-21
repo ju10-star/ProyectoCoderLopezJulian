@@ -1,0 +1,20 @@
+{% extends 'productos/index.html' %}
+
+
+{% block titulo %}
+    <h1 class="mb-5">registrar usuario </h1>
+{% endblock titulo %}
+    
+
+{% block contenido %}   
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="sign up">
+</form>
+
+
+{% endblock contenido %}

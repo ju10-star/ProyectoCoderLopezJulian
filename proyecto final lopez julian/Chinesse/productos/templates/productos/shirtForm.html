@@ -1,0 +1,150 @@
+{% extends 'productos/stock.html' %}
+
+
+{% block titulo %}
+    <h1 class="mb-5">Chinesse.</h1>
+    <a class="btn btn-primary" href="#Stock">check</a>
+{% endblock titulo %}
+
+
+    
+{% block contenido %}
+    <section class="stock-section text-center" id="Stock">
+        {% block content %}
+            <style>
+                /* edit tabla */
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+        
+                /* edit h1 */
+                h1 {
+                    background: transparent;
+                    /*background: linear-gradient(to bottom, rgba(255, 0, 0, 0.8), #000000);*/
+                    color: black;
+                    font-size: 25px; 
+                    border: 1px solid #ddd;
+                }
+        
+                /* edit celda */
+                td {
+                    border: 1px solid #ddd;
+                    padding: 8px;
+                }
+                
+
+                .form-field input,
+                .form-field select,
+                .form-field textarea {
+                    color: white; /* Cambia el color del texto a blanco */
+                    background-color: black; /* Fondo transparente */
+                    border: 1px solid black; /* Borde blanco */
+                }
+
+            </style>
+            <h1>Add shirt</h1>
+            <form method="post" action="{% url 'shirtForm' %}">
+                {% csrf_token %}
+                {{ Form.as_p }}
+                <table>
+                    {% for field in miForm %}
+                        <tr>
+                            <td><label style="color: white;">{{ field.label_tag }}</td>
+                            <td class="form-field">{{ field }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <button type="submit">Enviar</button>
+            </form> 
+                <!--<table>
+                    {% for field in miForm %}
+                        <tr>
+                            <td><label style="color: white;">{{ field.label_tag }}</td>
+                            <td class="form-field">{{ field }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <table>
+                    {% if model_form %}
+                        {% for field in model_form %}
+                            <tr>
+                                <td><label style="color: white;">{{ field.label_tag }}</td>
+                                <td class="form-field">{{ field }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </table>
+                
+                <button type="submit">Enviar</button>
+            </form>-->          
+        {% endblock %}
+        <style>
+            /* edit tabla */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                /*background: linear-gradient(to bottom, rgba(255, 0, 0, 0.8), #000000); */
+                background: transparent;
+            }
+    
+            /* edit tch */
+            th {
+                background-color: #333;
+                color: white;
+                font-size: 20px;  
+                padding: 15px;    
+                width: 150px;     
+                height: 50px;    
+                border: 1px solid #ddd;
+            }
+    
+            /* edit celdas */
+            td {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+        </style>
+        <style>
+            .custom-text { 
+                font-size: 18px;
+                color: #3498db;
+            }
+        </style>
+        <table class="table table-scripted">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>modelo</th>
+                    <th>talle</th>
+                    <th>precio</th>
+                    <th>acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in shirts %}
+                    <tr>
+                        <td class="custom-text">{{ s.id }}</td>
+                        <td class="custom-text">{{ s.modelo }}</td>
+                        <td class="custom-text">{{ s.talle }}</td>
+                        <td class="custom-text">{{ s.precio }}</td>
+                        <td>
+                            <a
+                              href="{% url 'shirtUpdate' s.id %}"
+                              class="btn btn-primary"
+                              style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                              ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                            </a>
+                            <a
+                              href="{% url 'shirtDelete' s.id %}"
+                              class="btn btn-danger"
+                              style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                              ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                            </a>                
+                        </td>
+                    </tr>
+                {% endfor %}
+            <tbody>
+        </table>   
+    </section>
+{% endblock contenido %} 
