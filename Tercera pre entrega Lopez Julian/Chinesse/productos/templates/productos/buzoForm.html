@@ -43,8 +43,8 @@
                 }
 
             </style>
-            <h1>Add Pant</h1>
-            <form method="post" action="{% url 'pantForm' %}">
+            <h1>Add buzo</h1>
+            <form method="post" action="{% url 'buzoForm' %}">
                 {% csrf_token %}
                 {{ Form.as_p }}
                 <table>
@@ -56,8 +56,8 @@
                     {% endfor %}
                 </table>
                 <button type="submit">Enviar</button>
-            <!--</form> 
-                <table>
+            </form> 
+                <!--<table>
                     {% for field in miForm %}
                         <tr>
                             <td><label style="color: white;">{{ field.label_tag }}</td>
@@ -110,7 +110,7 @@
                 font-size: 18px;
                 color: #3498db;
             }
-        </style>   
+        </style>
         <table class="table table-scripted">
             <thead>
                 <tr>
@@ -122,21 +122,21 @@
                 </tr>
             </thead>
             <tbody>
-                {% for p in pants %}
+                {% for b in buzos %}
                     <tr>
-                        <td class="custom-text">{{ p.id }}</td>
-                        <td class="custom-text">{{ p.modelo }}</td>
-                        <td class="custom-text">{{ p.talle }}</td>
-                        <td class="custom-text">{{ p.precio }}</td>
+                        <td class="custom-text">{{ b.id }}</td>
+                        <td class="custom-text">{{ b.modelo }}</td>
+                        <td class="custom-text">{{ b.talle }}</td>
+                        <td class="custom-text">{{ b.precio }}</td>
                         <td>
                             <a
-                              href="{% url 'pantUpdate' p.id %}"
+                              href="{% url 'buzoUpdate' b.id %}"
                               class="btn btn-primary"
                               style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
                               ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
                             </a>
                             <a
-                              href="{% url 'pantDelete' p.id %}"
+                              href="{% url 'buzoDelete' b.id %}"
                               class="btn btn-danger"
                               style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
                               ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
@@ -146,7 +146,5 @@
                 {% endfor %}
             <tbody>
         </table>
-        </div>
     </section>
 {% endblock contenido %} 
-

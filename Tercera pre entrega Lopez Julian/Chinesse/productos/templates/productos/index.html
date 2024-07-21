@@ -15,6 +15,8 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <!-- Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -32,13 +34,45 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#Drops">Drops</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Stock' %}">Stock</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'StockForm' %}">StockForm</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">about</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'SignUp' %}">Sign Up</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'SignIn' %}">Sign In</a></li>
+                        <!--<li class="nav-item"><a class="nav-link" href="#Drops">Drops</a></li>-->
+                        <!--<li class="nav-item"><a class="nav-link" href="{% url 'Stock' %}">Stock</a></li>-->
+                        {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'pantForm' %}">pants</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shirtForm' %}">shirts</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'buzoForm' %}">buzos</a></li>
+                            <a class="nav-link"  style="color:black"> [{{user.username}}]</a>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">profile</a></li>
+                            <style> 
+                                .navbar-nav .nav-item {
+                                display: flex;
+                                align-items: center;} 
+                                .navbar-nav .nav-item {
+                                    display: flex;
+                                    align-items: center;
+                                }
+                                
+                                .avatar-link {
+                                    margin-left: 15px; 
+                                }
+                            </style>
+                            <li class="nav-item">
+                                <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="nav-link" style="background:none;border:none;padding:0;color:inherit;cursor:pointer;">
+                                        Log out
+                                    </button>
+                                </form>
+                                <div class="text-center">
+                                    <a href="{% url 'inputAvatar' %}"><img src="{{ request.session.avatar}}" height="40px" weight="40px" alt=" "></a>
+                                </div>
+                            </li>
+                                <!--<a class="nav-link"><button type="submit" href="{% url 'logout' %}">Log out</button></a>-->
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="#about">about</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'SignUp' %}">SignUp</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">log in</a></li>
+                        {% endif %}
                         <!--<li class="nav-item"><a class="nav-link" href="#SignIn">SignIn</a></li>-->
                     </ul>
                 </div>
